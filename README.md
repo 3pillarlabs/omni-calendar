@@ -1,6 +1,10 @@
 OMNI-CALENDAR
 ====================
-This library is used to send calendar invite through email or using Google calendar.
+Omni-calendar is a java library to easily send calendar invitations, whether on Gmail, Outllook or any other mail client. To achieve this, we have provided two implementations: <br>
+1. ICal attachments using email, which supports most mail clients including Gmail and Outlook. The heavy lifting in this case is done by the excellent and powerful iCal4j library.<br>
+2. Creating meeting invitations directly using Google API. This requires the authentication of the sender using OAuth.
+
+More implementations are on our roadmap, for example sending meeting invitation using Exchange Web Services API.
 
 How to Incorporate this library in your application
 ===========================
@@ -40,12 +44,28 @@ How to Use
 For sending calendar request through Email
 -------------------------------------------
 
-First You'll have to create a Instance on EmailInviteImpl class.
+<p>First You'll have to create a Instance on EmailInviteImpl class.</p>
+    Invite invite = new EmailInviteImpl(props);
+Constructs an instance of this class. It accepts mail configuration properties.<br>
+**Parameters:**<br>
+properties - the mail configuration properties. <br>Properties should contain <br>
+_mail.smtp.host, mail.smtp.socketFactory.port, mail.smtp.socketFactory.class, mail.smtp.auth, mail.smtp.port, username, password._<br>
 
-Invite invite = new EmailInviteImpl(props);
+<p>You'll have to call the following function:-</P>
+    invite.sendInvite(String subject,String description,Participant from,
+    List<Participant> attendees,Date startDate,Date endDate,String location) throws Exception
 
-    Constructs an instance of this class. It accepts mail configuration properties.
-	Parameters:
-        properties - the mail configuration properties. Properties should contain mail.smtp.host, mail.smtp.socketFactory.port, 
-		mail.smtp.socketFactory.class, mail.smtp.auth, mail.smtp.port, username, password.
+For sending google calendar request 
+-------------------------------------------
+<p>First You'll have to create a Instance on GoogleInviteImpl class.</p>
+    Invite invite = new GoogleInviteImpl(props);
 
+Constructs an instance of this class. It accepts OAuth configuration properties.<br>
+**Parameters:** <br>
+properties - the OAUTH configuration properties.<br>
+Properties should contain <br>
+_CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN, EXPIRY_TIME_IN_MILLIS, APPLICATION_NAME_
+
+<p>You'll have to call the following function:-</P>
+    invite.sendInvite(String subject,String description,Participant from,
+    List<Participant> attendees,Date startDate,Date endDate,String location) throws Exception
