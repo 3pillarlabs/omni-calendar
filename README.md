@@ -2,7 +2,7 @@ OMNI-CALENDAR
 ====================
 This library is used to send calendar invite through email or using Google calendar.
 
-How to Use
+How to Incorporate this library in your application
 ===========================
 
 You can use the library in following ways:-
@@ -33,3 +33,19 @@ You can use the library in following ways:-
 	- jetty-6.1.26.jar
 	- jetty-util-6.1.26.jar
 	- servlet-api-2.5-20081211.jar
+
+How to Use
+=============================
+
+For sending calendar request through Email
+-------------------------------------------
+
+First You'll have to create a Instance on EmailInviteImpl class.
+
+Invite invite = new EmailInviteImpl(props);
+
+    Constructs an instance of this class. It accepts mail configuration properties.
+	Parameters:
+        properties - the mail configuration properties. Properties should contain mail.smtp.host, mail.smtp.socketFactory.port, 
+		mail.smtp.socketFactory.class, mail.smtp.auth, mail.smtp.port, username, password.
+
