@@ -1,19 +1,44 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.threepillar.labs</groupId>
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+	
+	<groupId>com.3pillarglobal.labs</groupId>
 	<artifactId>omni-calendar</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>2.0</version>
+	<name>omni-calendar</name>
+	<description>Omni Calendar</description>
 	<packaging>jar</packaging>
-
-	<name>Omni Calendar</name>
-	<url>http://maven.apache.org</url>
+	
+	<url>https://github.com/3pillarlabs/omni-calendar</url>
+	<licenses>
+		<license>
+			<name>The MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>git://github.com/3pillarlabs/omni-calendar.git</connection>
+		<url>https://github.com/3pillarlabs/omni-calendar</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>3pillarlabs</id>
+			<name>3Pillar Labs</name>
+			<email>labs@3pillarglobal.com</email>
+		</developer>
+	</developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.http.version>1.13.1-beta</project.http.version>
 		<project.oauth.version>1.13.1-beta</project.oauth.version>
+		<project.calendar.api.version>v3-rev37-1.13.2-beta</project.calendar.api.version>
 	</properties>
 
 	<repositories>
@@ -23,14 +48,6 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</repository>
-		<repository>
-			<id>googleapis</id>
-			<url>https://google-api-client-libraries.appspot.com/mavenrepo</url>
-		</repository>
-		<repository>
-			<id>Java.Net</id>
-			<url>http://download.java.net/maven/2/</url>
 		</repository>
 	</repositories>
 
@@ -49,7 +66,7 @@
 		<dependency>
 			<groupId>com.google.apis</groupId>
 			<artifactId>google-api-services-calendar</artifactId>
-			<version>v3-rev22-1.13.2-beta</version>
+			<version>${project.calendar.api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.http-client</groupId>
@@ -61,6 +78,20 @@
 			<artifactId>google-oauth-client-jetty</artifactId>
 			<version>${project.oauth.version}</version>
 		</dependency>
-		
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
